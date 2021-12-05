@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace taxicabBlocks
 {
@@ -17,6 +18,8 @@ namespace taxicabBlocks
             int blocksAway = 0;
             int[] currentlocation = new int[] { 0, 0 }; //currentLocation[0] is X
             int currentFacing = 0; //0 for North, 90 for East etc
+            List<int,int> visitedLocs = new List<int,int>();
+            int i = 0;
 
             foreach (string instruction in instructions)
             {
@@ -84,6 +87,7 @@ namespace taxicabBlocks
                     Console.ReadKey();
                     System.Environment.Exit(1);
                 }
+                i++;
             }
 
             blocksAway = Math.Abs(currentlocation[0]) + Math.Abs(currentlocation[1]);
