@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace CalorieCounting
@@ -8,7 +9,7 @@ namespace CalorieCounting
         static void Main(string[] args)
         {
             // Variables
-            int maxCals = 0;
+            List<int> calorieTotals = new List<int>();
             List<string> tempElf = new List<string>();
             List<string[]> elves = new List<string[]>();
             string[] inputs = System.IO.File.ReadAllLines(@"calories.txt");
@@ -38,19 +39,14 @@ namespace CalorieCounting
                 {
                     currentTotal += Int32.Parse(foodItem);
                 }
-
-                if (currentTotal > maxCals)
-                {
-                    maxCals = currentTotal;
-                    Console.WriteLine("New Calorie Record!");
-                }
-                else
-                {
-                    Console.WriteLine("Record not broken");
-                }
+                calorieTotals.Add(currentTotal);
             }
 
-            Console.WriteLine("The elf with the highest calories has " + maxCals + " calories!");
+            // Sort
+            int[] sortedTotals = calorieTotals.OrderByDescending(x => x).ToArray();
+            int topThree = (sortedTotals[0] + sortedTotals[1] + sortedTotals[2]);
+
+            Console.WriteLine("The total of the top three elves is: " + topThree);
         }
     }
 }
