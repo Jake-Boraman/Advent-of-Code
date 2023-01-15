@@ -13,45 +13,51 @@ namespace rockPaperScissors
                 int tempscore = 0;
                 string[] plays = play.Split(' ');
 
-                // Type score
+                // Win/Lose score
                 switch(plays[1]){
-                    case "X":
-                        tempscore += 1;
-                        break;
                     case "Y":
-                        tempscore += 2;
+                        tempscore += 3; // Draw score
                         break;
                     case "Z":
-                        tempscore += 3;
+                        tempscore += 6; // Win score
                         break;
                     default:
-                        Console.WriteLine("what the fuck");
+                        Console.WriteLine("no score"); // Lose score is 0
                         break;
                 }
 
-                // Win/Lose score
+                // Shape score
                 if (plays[0] == "A"){ // Rock
-                    if (plays[1] == "Y"){
-                        tempscore += 6;
-                    }
-                    else if (plays[1] == "X"){
-                        tempscore += 3;
-                    }
-                }
-                if (plays[0] == "B"){ // Paper
-                    if (plays[1] == "Z"){
-                        tempscore += 6;
+                    if (plays[1] == "X"){
+                        tempscore += 3; // Play scissors to lose
                     }
                     else if (plays[1] == "Y"){
-                        tempscore += 3;
+                        tempscore += 1; // Play rock to draw
+                    }
+                    else if (plays[1] == "Z"){
+                        tempscore += 2; // Play paper to win
+                    }
+                }
+                else if (plays[0] == "B"){ // Paper
+                    if (plays[1] == "X"){
+                        tempscore += 1; // Play rock to lose
+                    }
+                    else if (plays[1] == "Y"){
+                        tempscore += 2; // Play paper to draw
+                    }
+                    else if (plays[1] == "Z"){
+                        tempscore += 3; // Play scissors to win
                     }
                 }
                 else if (plays[0] == "C"){ // Scissors
                     if (plays[1] == "X"){
-                        tempscore += 6;
+                        tempscore += 2; // Play paper to lose
+                    }
+                    else if (plays[1] == "Y"){
+                        tempscore += 3; // Play scissors to draw
                     }
                     else if (plays[1] == "Z"){
-                        tempscore += 3;
+                        tempscore += 1; // Play rock to win
                     }
                 }
                 totalscore += tempscore;
