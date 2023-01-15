@@ -13,7 +13,7 @@ namespace CalorieCounting
             List<string> tempElf = new List<string>();
             List<string[]> elves = new List<string[]>();
             string[] inputs = System.IO.File.ReadAllLines(@"calories.txt");
-
+            
             // Elf array grabber
             foreach (string input in inputs){
                 if (!String.IsNullOrWhiteSpace(input))
@@ -29,8 +29,8 @@ namespace CalorieCounting
                 }
             }
             // Fallthrough
-            elves.Add(tempElf.ToArray());
-            
+            elves.Add(tempElf.ToArray()); 
+
             // Calorie Counter
             foreach (string[] elf in elves)
             {
@@ -45,7 +45,6 @@ namespace CalorieCounting
             // Sort
             int[] sortedTotals = calorieTotals.OrderByDescending(x => x).ToArray();
             int topThree = (sortedTotals[0] + sortedTotals[1] + sortedTotals[2]);
-
             Console.WriteLine("The total of the top three elves is: " + topThree);
         }
     }
